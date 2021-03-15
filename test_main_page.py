@@ -12,7 +12,6 @@ def test_guest_can_go_to_login_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer"
     page = MainPage(browser, link) # inicialization Page Object
     page.open() # method from base_page
-    print('Searching login link...\n')
     page.go_to_login_page()
     
     login_page = LoginPage(browser, browser.current_url)
