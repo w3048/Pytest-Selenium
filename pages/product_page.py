@@ -1,6 +1,8 @@
+import math
 from .base_page import BasePage
 from .locators import ProductPageLocators
-import math
+from selenium.common.exceptions import NoAlertPresentException
+
 
 class ProductPage(BasePage):
     
@@ -25,7 +27,7 @@ class ProductPage(BasePage):
     def product_name_in_message_is_equal_product_name(self):
         # проверка того, что после добавления товара в корзину его название в сообщении о добавлении
         # отображается верно
-        message_product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        message_product_name = self.browser.find_element(*ProductPageLocators.ALERT_PRODUCT_NAME).text
         assert message_product_name == self.get_product_name(), "Product name in message is not valid"
     
     def get_product_price(self):
@@ -36,15 +38,15 @@ class ProductPage(BasePage):
     def product_price_is_equal_basket_cost(self):
         # проверка того, что после добавления товара в корзину стоимость корзины в сообщении о добавлении
         # отображается верно
-        message_product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        message_product_price = self.browser.find_element(*ProductPageLocators.ALERT_PRODUCT_PRICE).text
         assert message_product_price == self.get_product_price(), "Product price in basket is not valid"
     
-    def test_guest_can_add_product_to_basket(self):
-        # проверка возможности добавления товара неавторизованным пользователем
+    def add_product_to_basket(self):
+        # проверка возможности добавления товара
         self.button_find_and_click(*ProductPageLocators.ADD_TO_BASCKET_BUTTON)
         self.solve_quiz_and_get_code()
-        self.product_name_in_message_is_equal_product_name()
-        self.product_price_is_equal_basket_cost() 
+        # self.product_name_in_message_is_equal_product_name()
+        # self.product_price_is_equal_basket_cost() 
        
     def solve_quiz_and_get_code(self):
         # задание от наших любимых учителей ))

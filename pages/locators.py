@@ -14,4 +14,4 @@ class ProductPageLocators():
     PRODUCT_NAME = (By.CSS_SELECTOR, "div.col-sm-6.product_main > h1")
     PRODUCT_PRICE = (By.CSS_SELECTOR, "div.col-sm-6.product_main > .price_color")
     ALERT_PRODUCT_NAME = (By.CSS_SELECTOR, "#messages :nth-child(1) > div > strong")
-    ALERT_PRODUCT_PRICE = (By.CSS_SELECTOR, "#messages :nth-child(3) > div > strong")
+    ALERT_PRODUCT_PRICE = (By.CSS_SELECTOR, "#messages :nth-child(3) > div > p > strong")
