@@ -1,3 +1,4 @@
+import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -17,21 +18,22 @@ def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language") #запрос параметра языка
     browser = None
-    print('\n\nOpen browser...\n\n')
+    print('\nOpen browser...\n')
     if browser_name == "chrome":
         #вывод в консоль языка, с которым тест будет идти
-        print(f"\n\nstart chrome browser for test with {user_language} language\n\n")
+        print(f"\nstart chrome browser for test with {user_language} language\n")
         options = Options()
         options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Chrome(options=options)
     elif browser_name == "firefox":
         #вывод в консоль языка, с которым тест будет идти
-        print(f"\n\nstart firefox browser for test {user_language} language\n\n")
+        print(f"\nstart firefox browser for test {user_language} language\n")
         fp = webdriver.FirefoxProfile()
         fp.set_preference("intl.accept_languages", user_language)
         browser = webdriver.Firefox(firefox_profile=fp)
     else:
         raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
-    print("\n\nquit browser..\n\n")
+    print("\nquit browser..\n")
+    #time.sleep(20)
     browser.quit()

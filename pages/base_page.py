@@ -3,16 +3,17 @@ from selenium.common.exceptions import NoSuchElementException
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
-        #инициализация объекта с параметрами self.browser и self.url
+        # инициализация объекта с параметрами self.browser и self.url
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
         
     def open(self):
-        #открываем нужную страницу в браузере
+        # открываем нужную страницу в браузере
         self.browser.get(self.url)
         
     def is_element_present(self, how, what):
+        # проверка наличия элемента
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
@@ -20,4 +21,6 @@ class BasePage():
         return True
         
     def button_find_and_click(self, how, what):
+        # просто ищем и кликаем
         self.browser.find_element(how, what).click()
+        
