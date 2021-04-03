@@ -17,6 +17,10 @@ class BasePage():
     def button_find_and_click(self, how, what):
         # просто ищем элемент и кликаем
         self.browser.find_element(how, what).click()
+    
+    def go_to_basket(self):
+        basket_link_button = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        basket_link_button.click()
         
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -48,6 +52,10 @@ class BasePage():
     def open(self):
         # открываем нужную страницу в браузере
         self.browser.get(self.url)
+        
+    def get_element_from_page(self, how, what):
+        # извлечение элемента со страницы
+        self.browser.find_element(how, what)
         
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
