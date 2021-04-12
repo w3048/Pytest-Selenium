@@ -44,7 +44,8 @@ class ProductPage(BasePage):
     def add_product_to_basket(self):
         # проверка возможности добавления товара
         self.button_find_and_click(*ProductPageLocators.ADD_TO_BASCKET_BUTTON)
-        self.solve_quiz_and_get_code()
+        if "promo=offer" in self.browser.current_url:
+            self.solve_quiz_and_get_code()
         self.product_name_in_message_is_equal_product_name()
         self.product_price_is_equal_basket_cost() 
         
