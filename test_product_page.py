@@ -45,7 +45,8 @@ class TestUserAddToBasketFromProductPage():
         self.page.product_price_is_equal_basket_cost()
     
     
-list_offer_codes = [str(i) for i in range(0, 1) if i != 7]
+list_offer_codes = [str(i) for i in range(6, 9) if i != 7]
+# Checking offer codes only from 6 to 8!
 list_offer_codes.append('pytest.param("7", marks=pytest.mark.xfail)')
 @pytest.mark.parametrize('offer_codes', list_offer_codes)
 def test_guest_can_add_product_to_basket(browser, offer_codes):
